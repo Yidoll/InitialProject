@@ -35,3 +35,10 @@ score = knn.score(iris_x_test, iris_y_test, sample_weight=None)
 # 输出测试的结果
 print('irir_y_predict=')
 print(iris_y_predict)
+
+# 输出原始测试数据集的正确标签，以方便对比
+print('iris_y_test=')
+print(iris_y_test)
+
+# 输出准确率计算结果
+print('Accuracy:', score)
