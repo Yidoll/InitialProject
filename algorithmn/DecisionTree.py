@@ -5,10 +5,14 @@ from sklearn import datasets
 from sklearn.tree import  DecisionTreeClassifier # 引入决策树算法包
 import numpy as np
 # 引入画图相关的包
-from IPython.display import Image
+from IPython.display import Image,display
 # dot是一个程序化生成流程图的简单语言
 import pydotplus
 from sklearn import tree
+import os
+
+# graphviz2 环境
+os.environ["PATH"] += os.pathsep + 'C:/Program Files/Graphviz/bin/'
 
 np.random.seed(0)
 iris = datasets.load_iris()
@@ -32,7 +36,9 @@ dot_data = tree.export_graphviz(clf, out_file=None,
                                 filled=True, rounded=True,
                                 special_characters=True)
 graph = pydotplus.graph_from_dot_data(dot_data)
-Image(graph.create_png())
+graph.write_png('iris.png')
+graph.write_pdf('iris.pdf')
+display(Image(graph.create_png()))
 
 iris_y_predict = clf.predict(iris_x_test)
 
